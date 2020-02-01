@@ -6,8 +6,8 @@ namespace Mars
 {
     public class Plateau
     {
-        private int width;
-        private int height;
+        private readonly int width;
+        private readonly int height;
         private List<Rover.Rover> rovers;
 
         public Plateau(int width, int height)
@@ -20,14 +20,30 @@ namespace Mars
 
         public IEnumerable<Rover.Rover> Rovers => rovers;
 
-        public void AddRover(Position position)
+        public Rover.Rover AddRover(Position position)
         {
-            rovers.Add(new Rover.Rover(position));
+            var rover = new Rover.Rover(position);
+            rovers.Add(rover);
+            return rover;
         }
 
         public Rover.Rover FindRover(Position position)
         {
             return rovers.SingleOrDefault(x => x.Position.Equals(position));
+        }
+
+        public void CheckAllRoversAreInPlateauBounds()
+        {
+            foreach (var rover in rovers)
+                CheckRoverIsInPlateauBounds(rover);
+        }
+
+        private void CheckRoverIsInPlateauBounds(Rover.Rover rover)
+        {
+            var position = rover.Position;
+            var isInPlateauBounds = position.X <= width && position.Y <= height;
+            if (!isInPlateauBounds)
+                throw new System.Exception($"Rover with position {rover.ToString()} is out of bounds.");
         }
     }
 }
