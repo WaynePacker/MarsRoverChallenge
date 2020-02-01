@@ -33,7 +33,7 @@ namespace Tests
             plateau.AddRover(new Position(2, 2, Direction.W));
             plateau.AddRover(new Position(3, 3, Direction.E));
 
-            var expectedRover = plateau.Rovers.ElementAt(0);
+            var expectedRover = plateau.Rovers.ElementAt(1);
 
             Assert.AreEqual(expectedRover, plateau.FindRover(new Position(2, 2, Direction.W)), "Rover was not found on the plateau.");
 
