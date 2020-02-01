@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mars\Mars.csproj" />
+  </ItemGroup>
+
 </Project>
