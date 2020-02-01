@@ -12,6 +12,11 @@ namespace Mars.Rover
             Position = new Position(0, 0, Direction.N);
         }
 
+        public Rover(Position position)
+        {
+            Position = position;
+        }
+
         public Position Position { get; }
 
         public override string ToString()
