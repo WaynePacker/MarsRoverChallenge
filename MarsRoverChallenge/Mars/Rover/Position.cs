@@ -25,5 +25,23 @@
         {
             return $"{X} {Y} {Direction}";
         }
+
+        public override bool Equals(object other)
+        {
+            if(other is Position otherPosition)
+            {
+                return ToString() == otherPosition.ToString(); 
+            }
+            else
+            {
+               return base.Equals(other);
+            } 
+        }
+
+        public override int GetHashCode()
+        {
+            //To override Equals() this method must be overidden to keep the complier happy.
+            return base.GetHashCode();
+        }
     }
 }

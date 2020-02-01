@@ -1,5 +1,6 @@
 ﻿using Mars.Rover;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mars
 {
@@ -19,10 +20,14 @@ namespace Mars
 
         public IEnumerable<Rover.Rover> Rovers => rovers;
 
-        public void AddRover(int x, int y, Direction direction)
+        public void AddRover(Position position)
         {
-            var position = new Position(x, y, direction);
             rovers.Add(new Rover.Rover(position));
+        }
+
+        public Rover.Rover FindRover(Position position)
+        {
+            return rovers.SingleOrDefault(x => x.Position.Equals(position));
         }
     }
 }
