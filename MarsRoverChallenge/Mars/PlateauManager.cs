@@ -8,7 +8,10 @@ namespace Mars
     public class PlateauManager
     {
         private Plateau plateau;
-        public PlateauManager(string[] instructions)
+        public PlateauManager()
+        {  }
+
+        public void RunInstructions(string[] instructions)
         {
             CreatePlateau(instructions[0]);
 

@@ -1,5 +1,6 @@
 ﻿using Mars.Rover;
 using NUnit.Framework;
+using System;
 
 namespace Tests
 {
@@ -56,6 +57,26 @@ namespace Tests
 
             rover.Move("LMMLMRM");
             AssertRoverPosition(rover, 1, 3, Direction.W);
+        }
+
+        [Test]
+        public void RoverMoverOutOfYBounds()
+        {
+            var rover = new Rover(new Position(0, 0, Direction.S));
+
+            var exception = Assert.Throws<Exception>(() => rover.Move("M"));
+
+            Assert.AreEqual("Y position cannot be smaller than 0. Value is : -1", exception.Message);
+        }
+
+        [Test]
+        public void RoverMoverOutOXYBounds()
+        {
+            var rover = new Rover(new Position(0, 0, Direction.W));
+
+            var exception = Assert.Throws<Exception>(() => rover.Move("M"));
+
+            Assert.AreEqual("X position cannot be smaller than 0. Value is : -1", exception.Message);
         }
 
         [Test]
