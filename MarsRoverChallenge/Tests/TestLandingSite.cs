@@ -14,7 +14,9 @@ namespace Tests
             var args = new Dictionary<string, string> {
 
                 { "1 2 N", "LMLMLMLMM" },
-                { "3 3 E", "MMRMMRMRRM" }
+                { "3 3 E", "MMRMMRMRRM" },
+                { "0 0 N", "MMMMMRMMMMMRMMMMMRMMMMM" },
+                { "1 1 N", "LLRRLLRRLLRRLLRR" }
             };
 
             var manager = new LandingSite(5, 5);
@@ -23,6 +25,8 @@ namespace Tests
             var expectedOutput =
  @"1 3 N
 5 1 E
+0 0 W
+1 1 N
 ";
             Assert.AreEqual(expectedOutput, manager.GetRoverPositions(), "Incorrect rover positions.");
         }
