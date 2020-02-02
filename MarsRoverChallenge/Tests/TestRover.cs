@@ -60,7 +60,7 @@ namespace Tests
         }
 
         [Test]
-        public void RoverMoverOutOfYBounds()
+        public void RoverMovesOutOfYBounds()
         {
             var rover = new Rover(new Position(0, 0, Direction.S));
 
@@ -70,7 +70,7 @@ namespace Tests
         }
 
         [Test]
-        public void RoverMoverOutOXYBounds()
+        public void RoverMovesOutOXYBounds()
         {
             var rover = new Rover(new Position(0, 0, Direction.W));
 

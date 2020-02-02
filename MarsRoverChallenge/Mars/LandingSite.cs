@@ -1,26 +1,32 @@
 ﻿using Mars.Rover;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Mars
 {
-    public class PlateauManager
+    public class LandingSite
     {
         private Plateau plateau;
-        public PlateauManager()
-        {  }
-
-        public void RunInstructions(string[] instructions)
+        public LandingSite(int width, int height)
         {
-            CreatePlateau(instructions[0]);
+            plateau = new Plateau(width, height);
+        }
 
-            for (var i = 1; i < instructions.Length; i += 2)
+        public override string ToString()
+        {
+            return GetRoverPositions();
+        }
+
+        public void RunRoverInstructions(Dictionary<string, string> rovers)
+        {
+            foreach(var rover in rovers)
             {
-                var rover = PlaceRover(instructions[i]);
-                SendRoverInstructions(rover, instructions[i + 1]);
+                var roverObj = PlaceRover(rover.Key);
+                SendRoverInstructions(roverObj, rover.Value);
             }
-
+            
             plateau.CheckAllRoversAreInPlateauBounds();
         }
 
@@ -33,15 +39,6 @@ namespace Mars
             }
 
             return sb.ToString();
-        }
-
-        private void CreatePlateau(string plateauArgs)
-        {
-            var args = SplitArguments(plateauArgs);
-            var width = int.Parse(args[0]);
-            var height = int.Parse(args[1]);
-
-            plateau = new Plateau(width, height);
         }
 
         private Rover.Rover PlaceRover(string roverPosArgs)
