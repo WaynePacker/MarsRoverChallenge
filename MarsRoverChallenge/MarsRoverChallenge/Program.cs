@@ -6,8 +6,13 @@ namespace MarsRoverChallenge
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Mars Rover Challenge");
+            Console.WriteLine();
+            Console.ResetColor();
+
             var landingSite = ConstructLandingSite();
             var roversAndInstructions = GetRoversAndInstructions();
 
@@ -18,7 +23,9 @@ namespace MarsRoverChallenge
             }
             catch(Exception e)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Oh No! something went wrong with the rovers : " + e.Message);
+                Console.ResetColor();
             }
            
             Console.ReadLine();
@@ -27,8 +34,11 @@ namespace MarsRoverChallenge
         private static void PrintResult(LandingSite landingSite)
         {
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("The output of the rovers is:");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(landingSite.ToString());
+            Console.ResetColor();
         }
 
         private static LandingSite ConstructLandingSite()
@@ -63,12 +73,12 @@ namespace MarsRoverChallenge
 
         private static string GetRoverPosition(int currentRoverNumber)
         {
-            return GetAndValidateUserInput($"Please enter the position of rover number {currentRoverNumber}.", InputValidator.ValidateRoverPosition);
+            return GetAndValidateUserInput($"Please enter the position of rover number {currentRoverNumber}. e.g. 1 1 N", InputValidator.ValidateRoverPosition);
         }
 
         private static string GetRoverMovementInstructions(int currentRoverNumber)
         {
-            return GetAndValidateUserInput($"Please enter the movement instructions for rover number {currentRoverNumber}.", InputValidator.ValidateRoverMovementInstructions);
+            return GetAndValidateUserInput($"Please enter the movement instructions for rover number {currentRoverNumber}. e.g. MRMLM", InputValidator.ValidateRoverMovementInstructions);
         }
 
         private static bool GetAddAnotherRover()
@@ -84,7 +94,9 @@ namespace MarsRoverChallenge
 
         private static string GetAndValidateUserInput(string promt, Func<string, bool> validationAction)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(promt);
+            Console.ResetColor();
             string userInput;
 
             bool isValidInput;
@@ -94,8 +106,9 @@ namespace MarsRoverChallenge
                 isValidInput = validationAction(userInput);
                 if (!isValidInput)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid input, please try again");
-                    Console.WriteLine();
+                    Console.ResetColor();
                 }
             }
             while (!isValidInput);
