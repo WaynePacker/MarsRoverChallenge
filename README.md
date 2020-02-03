@@ -15,6 +15,8 @@ User input is validated, and will continue to prompt the user until valid input 
 
 3. If two rovers are at the same endpoint an exception is thrown
 
+4. Two rover positions are equal only if x and y are the same for both rovers, the direction is not compared. 
+
    
 
 **Running the program**

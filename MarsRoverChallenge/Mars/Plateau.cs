@@ -28,9 +28,19 @@ namespace Mars
             return rover;
         }
 
-        public Rover.Rover FindRover(Position position)
+        public void CheckForCollisions()
         {
-            return rovers.SingleOrDefault(x => x.Position.Equals(position));
+            for(var i = 0; i < rovers.Count; i++)
+            {
+                for(var k = 0; k < rovers.Count; k++)
+                {
+                    if (i == k)
+                        continue;
+
+                    if (rovers[i].Position.Equals(rovers[k].Position))
+                        throw new Exception($"Two rovers at position {rovers[i].ToString()} have collided.");
+                }
+            }
         }
 
         public void CheckAllRoversAreInPlateauBounds()

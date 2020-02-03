@@ -30,7 +30,7 @@
         {
             if(other is Position otherPosition)
             {
-                return ToString() == otherPosition.ToString(); 
+                return X == otherPosition.X && Y == otherPosition.Y;
             }
             else
             {

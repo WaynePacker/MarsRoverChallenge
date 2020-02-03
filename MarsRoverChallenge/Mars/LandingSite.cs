@@ -28,6 +28,7 @@ namespace Mars
             }
             
             plateau.CheckAllRoversAreInPlateauBounds();
+            plateau.CheckForCollisions();
         }
 
         public string GetRoverPositions()

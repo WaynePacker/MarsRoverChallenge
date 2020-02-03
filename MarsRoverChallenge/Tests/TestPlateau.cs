@@ -1,6 +1,7 @@
 ﻿using Mars;
 using Mars.Rover;
 using NUnit.Framework;
+using System;
 using System.Linq;
 
 namespace Tests
@@ -25,19 +26,17 @@ namespace Tests
         }
 
         [Test]
-        public void FindRover()
+        public void CheckCollisions()
         {
-            var plateau = new Plateau(0, 0);
+            var plateau = new Plateau(5, 5);
 
-            plateau.AddRover(new Position(1, 1, Direction.S));
-            plateau.AddRover(new Position(2, 2, Direction.W));
-            plateau.AddRover(new Position(3, 3, Direction.E));
+            var rover1 = plateau.AddRover(new Position(0, 0, Direction.N));
+            var rover2 = plateau.AddRover(new Position(0, 1, Direction.S));
 
-            var expectedRover = plateau.Rovers.ElementAt(1);
+            rover2.Move("M");
 
-            Assert.AreEqual(expectedRover, plateau.FindRover(new Position(2, 2, Direction.W)), "Rover was not found on the plateau.");
-
-            Assert.IsNull(plateau.FindRover(new Position(4, 5, Direction.W)), "Unexpected rover found on the plateau.");
+            var exception = Assert.Throws<Exception>(() => plateau.CheckForCollisions());
+            Assert.AreEqual("Two rovers at position 0 0 N have collided.", exception.Message);
         }
     }
 }
