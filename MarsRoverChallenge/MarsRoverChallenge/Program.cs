@@ -27,7 +27,7 @@ namespace MarsRoverChallenge
         private static void PrintResult(LandingSite landingSite)
         {
             Console.WriteLine();
-            Console.WriteLine("The output of the landers are as follows:");
+            Console.WriteLine("The output of the rovers is:");
             Console.WriteLine(landingSite.ToString());
         }
 

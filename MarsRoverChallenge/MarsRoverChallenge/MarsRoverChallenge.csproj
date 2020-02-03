@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,5 +8,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Mars\Mars.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="COPY /Y  &quot;$(ProjectDir)bin\Debug\netcoreapp3.1\*.dll&quot; &quot;$(SolutionDir)build&quot;&#xD;&#xA;&#xD;&#xA;COPY /Y  &quot;$(ProjectDir)bin\Debug\netcoreapp3.1\*.exe&quot; &quot;$(SolutionDir)build&quot;&#xD;&#xA;&#xD;&#xA;COPY /Y  &quot;$(ProjectDir)bin\Debug\netcoreapp3.1\*.runtimeconfig.json&quot; &quot;$(SolutionDir)build&quot;&#xD;&#xA;" />
+  </Target>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using Mars.Rover;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,7 +44,7 @@ namespace Mars
             var position = rover.Position;
             var isInPlateauBounds = position.X <= width && position.Y <= height;
             if (!isInPlateauBounds)
-                throw new System.Exception($"Rover with position {rover.ToString()} is out of bounds.");
+                throw new Exception($"Rover with position {rover.ToString()} is out of bounds.");
         }
     }
 }
